@@ -1,15 +1,19 @@
 import Vue from 'vue'
 import VueRouter, {RouteConfig} from 'vue-router'
 
-import SkyStudioLoading from '@/views/SkyStudioLoading.vue'
+import PadPage from '@/views/PadPage.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
     {
         path: '/',
-        name: 'Loading',
-        component: SkyStudioLoading,
+        redirect: '/pad',
+    },
+    {
+        path: '/pad',
+        name: 'Pad',
+        component: PadPage,
     },
     {
         path: '/about',

@@ -1,19 +1,19 @@
 <template>
   <v-app id="app">
-    <!--    <v-navigation-drawer app>-->
-    <!--      &lt;!&ndash; &ndash;&gt;-->
-    <!--    </v-navigation-drawer>-->
 
+    <!-- Navigation -->
     <v-app-bar app color="background">
       <!-- -->
     </v-app-bar>
 
+    <!-- Content -->
     <v-main>
       <v-container fluid>
-        <!--        <router-view/>-->
+        <router-view/>
       </v-container>
     </v-main>
 
+    <!-- Splash -->
     <SkyStudioSplash
         :show="splashVisible"
         :messages="splashMessages"
@@ -44,7 +44,7 @@ export default class App extends Vue {
   @NamespaceBuild.Getter('homepage') buildHomepage!: string
 
   mounted() {
-    // SkyStudio info
+    // SkyStudio preloading
     this.splashUpdate(`Visit ${this.buildHomepage} to get more info`)
     this.splashUpdate(`Welcome to ${this.buildName} ${this.buildVersion} ${this.buildMode}`)
     setTimeout(() => {
@@ -55,6 +55,8 @@ export default class App extends Vue {
 </script>
 
 <style lang="sass">
+@import './src/assets/styles/main'
+
 body
   margin: 0
 
@@ -63,5 +65,6 @@ body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   text-align: center
-  color: #2c3e50
+  color: $color-primary
+  background: $color-background-deep
 </style>
