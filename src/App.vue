@@ -4,7 +4,7 @@
     <!--      &lt;!&ndash; &ndash;&gt;-->
     <!--    </v-navigation-drawer>-->
 
-    <v-app-bar app>
+    <v-app-bar app color="background">
       <!-- -->
     </v-app-bar>
 
@@ -15,14 +15,15 @@
     </v-main>
 
     <SkyStudioSplash
-        :show="$store.state.splash.show"
-        :messages="$store.state.splash.messages"
+        :show="splashVisible"
+        :messages="splashMessages"
     />
   </v-app>
 </template>
 
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator'
+import {NamespaceSplash, NamespaceBuild} from "@/store"
 
 import SkyStudioSplash from '@/components/SkyStudioSplash/index.vue'
 
@@ -32,8 +33,23 @@ import SkyStudioSplash from '@/components/SkyStudioSplash/index.vue'
   },
 })
 export default class App extends Vue {
+  @NamespaceSplash.State('visible') splashVisible!: boolean
+  @NamespaceSplash.State('messages') splashMessages!: string[]
+  @NamespaceSplash.Action('update') splashUpdate!: (message: string) => void
+  @NamespaceSplash.Action('hide') splashHide!: () => void
+
+  @NamespaceBuild.Getter('version') buildVersion!: string
+  @NamespaceBuild.Getter('name') buildName!: string
+  @NamespaceBuild.Getter('mode') buildMode!: string
+  @NamespaceBuild.Getter('homepage') buildHomepage!: string
+
   mounted() {
-    this.$store.dispatch('splash/update', '123')
+    // SkyStudio info
+    this.splashUpdate(`Visit ${this.buildHomepage} to get more info`)
+    this.splashUpdate(`Welcome to ${this.buildName} ${this.buildVersion} ${this.buildMode}`)
+    setTimeout(() => {
+      this.splashHide()
+    }, 3000)
   }
 }
 </script>

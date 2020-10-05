@@ -1,32 +1,39 @@
 <template>
-  <div class="splash-container">
-    <v-card elevation="5" flat class="splash">
-      <v-progress-linear indeterminate color="primary"/>
+  <div
+      class="splash-container"
+      :class="{
+        visible: show,
+      }"
+  >
+    <v-fade-transition>
+      <v-card v-if="show" elevation="5" flat class="splash">
+        <v-progress-linear indeterminate color="primary"/>
 
-      <COTLStudio class="cotl-studio"/>
+        <COTLStudio class="cotl-studio"/>
 
-      <div class="messages">
-        <div
-            v-for="(text, i) in showedMessages"
-            :key="i"
-            class="text-caption message"
-        >
-          {{ text }}
+        <div class="messages">
+          <div
+              v-for="(text, i) in showedMessages"
+              :key="i"
+              class="text-caption message"
+          >
+            {{ text }}
+          </div>
         </div>
-      </div>
 
-      <div class="sky-logo"></div>
+        <div class="sky-logo"></div>
 
-      <div class="links-buttons">
-        <v-btn text color="primary" @click="btnGithubClick">
-          Fork Me
-          <v-icon right>
-            mdi-github
-          </v-icon>
-        </v-btn>
-      </div>
+        <div class="links-buttons">
+          <v-btn text color="primary" @click="btnGithubClick">
+            Fork Me
+            <v-icon right>
+              mdi-github
+            </v-icon>
+          </v-btn>
+        </div>
 
-    </v-card>
+      </v-card>
+    </v-fade-transition>
   </div>
 </template>
 
@@ -41,14 +48,13 @@ import COTLStudio from './components/COTLStudio.vue'
   },
 })
 export default class SkyStudioSplash extends Vue {
+  // The splash window visibility
   @Prop({type: Boolean, default: false})
   show!: boolean
 
+  // The splash window messages
   @Prop({type: Array, default: () => []})
   messages!: string[]
-
-  //         {{ $store.getters.APP.NAME }}<br>
-  // ver {{ $store.getters.APP.VERSION }} {{ $store.getters.APP.MODE }}
 
   // Returns messages to show
   get showedMessages() {
@@ -74,9 +80,14 @@ export default class SkyStudioSplash extends Vue {
   left: 0
   width: 100%
   height: 100%
-  background: rgba(0, 0, 0, .3)
   z-index: 9999
-  backdrop-filter: blur(3px)
+  visibility: hidden
+  transition: .3s ease-out
+
+  &.visible
+    visibility: visible
+    background: rgba(0, 0, 0, .3)
+    backdrop-filter: blur(3px)
 
   .links-buttons
     position: absolute

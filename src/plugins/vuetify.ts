@@ -10,7 +10,8 @@ export default new Vuetify({
         themes: {
             dark: {
                 'primary': colors.teal.accent3,
-                'secondary': colors.blueGrey.darken3,
+                'background': colors.blueGrey.darken3,
+                'background-deep': colors.blueGrey.darken4,
             }
         },
     },

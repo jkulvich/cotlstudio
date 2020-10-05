@@ -1,34 +1,27 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {namespace} from "vuex-class";
 
 import Splash from './splash'
+import Build, {BuildHelper} from './build'
+import {BindingHelper} from "vuex-class/lib/bindings";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state: {},
-    mutations: {},
-    actions: {},
-    getters: {
-        APP: state => {
-            /* eslint-disable */
-            /* tslint:disable */
-            return {
-                // @ts-ignore
-                VERSION: APP.VERSION || 'test',
-                // @ts-ignore
-                MODE: APP.MODE || 'unknown',
-                // @ts-ignore
-                NAME: APP.NAME || 'cotlstudio',
-                // @ts-ignore
-                HOMEPAGE: APP.HOMEPAGE,
-            }
-            /* tslint:enable*/
-            /* eslint-enable */
-        },
-    },
     modules: {
-        // Control of SplashScreen
-        splash: Splash,
+        // Build info
+        Build,
+        // SplashScreen control
+        Splash,
     }
 })
+
+// Exporting modules namespaces
+const NamespaceBuild = namespace('Build')
+const NamespaceSplash = namespace('Splash')
+
+export {
+    NamespaceBuild,
+    NamespaceSplash,
+}

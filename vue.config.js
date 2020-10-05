@@ -2,8 +2,9 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-    "transpileDependencies": [
-        "vuetify"
+    transpileDependencies: [
+        "vuetify",
+        "vuex-module-decorators",
     ],
     configureWebpack: {
         resolve: {

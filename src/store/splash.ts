@@ -1,42 +1,35 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import {Module, VuexModule, Mutation, Action} from 'vuex-module-decorators'
 
-Vue.use(Vuex)
+@Module({namespaced: true})
+export default class Splash extends VuexModule {
+    // SkyStudioSplash state
+    visible = false
+    messages = [] as string[]
 
-export default new Vuex.Store({
-    state: {
-        // SkyStudioSplash
-        splash: {
-            show: false,
-            messages: [] as string[],
-        },
-    },
-    mutations: {
-        // Showing splash
-        show: state => {
-            state.splash.show = true
-        },
-        // Hiding splash
-        hide: state => {
-            state.splash.show = false
-        },
-        // Adding new message to splash
-        addMessage: (state, payload: string) => {
-            state.splash.messages.push(payload)
-            state.splash.messages = state.splash.messages.slice(-100)
-        },
-    },
-    actions: {
-        // Adding new message and shows splash
-        update: async ({commit}, message: string) => {
-            commit('show')
-            commit('addMessage', message)
-        },
-        // Hiding splash
-        hide: async ({commit}) => {
-            commit('hide')
-        },
-    },
-    getters: {},
-    modules: {}
-})
+    // Adding new message
+    @Mutation
+    addMessage(message: string) {
+        const maxMessages = 50
+        this.messages.push(message)
+        this.messages = this.messages.slice(-maxMessages)
+    }
+
+    // Changing visibility state
+    @Mutation
+    visibility(visible: boolean) {
+        this.visible = visible
+    }
+
+    // Showing splash and adding new message
+    @Action
+    update(message: string) {
+        this.context.commit('visibility', true)
+        this.context.commit('addMessage', message)
+    }
+
+    // Hiding splash
+    @Action
+    hide() {
+        this.context.commit('visibility', false)
+    }
+}
