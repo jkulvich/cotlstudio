@@ -2,9 +2,104 @@
   <v-app id="app">
 
     <!-- Navigation -->
-    <v-app-bar app color="background">
-      <!-- -->
-    </v-app-bar>
+    <v-navigation-drawer color="background" width="200" app permanent expand-on-hover>
+      <v-list nav dense>
+
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-gamepad-circle</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="text-left">Music Pad</v-list-item-title>
+        </v-list-item>
+
+      </v-list>
+
+      <v-divider/>
+
+      <v-list nav dense>
+
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-notification-clear-all</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="text-left">Notes Lines</v-list-item-title>
+        </v-list-item>
+
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-cards</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="text-left">Notes Cards</v-list-item-title>
+        </v-list-item>
+
+      </v-list>
+
+      <v-divider/>
+
+      <v-list nav dense>
+
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-music-box-multiple</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="text-left">Music Collections</v-list-item-title>
+        </v-list-item>
+
+      </v-list>
+
+      <v-divider/>
+
+      <v-list nav dense>
+
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-robot</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="text-left">COTL Sound</v-list-item-title>
+        </v-list-item>
+
+      </v-list>
+
+      <v-divider/>
+
+      <v-list nav dense>
+
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-import</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="text-left">Import Music</v-list-item-title>
+        </v-list-item>
+
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-export</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="text-left">Export Music</v-list-item-title>
+        </v-list-item>
+
+      </v-list>
+
+      <v-divider/>
+
+      <v-list nav dense>
+
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-github</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="text-left">Fork Me</v-list-item-title>
+        </v-list-item>
+
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-coffee</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="text-left">Donate</v-list-item-title>
+        </v-list-item>
+
+      </v-list>
+    </v-navigation-drawer>
 
     <!-- Content -->
     <v-main>
