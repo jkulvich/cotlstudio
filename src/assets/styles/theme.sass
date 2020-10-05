@@ -1,0 +1,9 @@
+@use "sass:map"
+
+@import '~vuetify/src/styles/main.sass'
+
+$color-pack: false
+
+$color-primary: map.get(map.get($colors, "teal"), "accent-3")
+$color-background: map.get(map.get($colors, "blue-grey"), "darken-3")
+$color-background-deep: map.get(map.get($colors, "blue-grey"), "darken-4")
